@@ -1,0 +1,18 @@
+{% unless section.settings.message == blank %}
+<div class="alert-bar" data-section-id="{{ section.id }}">
+    {{ section.settings.message }}
+</div>
+{% endunless %}
+
+{% schema %}
+{
+    "name": "Alert Bar",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "message",
+            "label": "Message"
+        }
+    ]
+}
+{% endschema %}

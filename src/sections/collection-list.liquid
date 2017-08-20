@@ -1,0 +1,121 @@
+{% case section.settings.columns %}
+    {% when "2" %}
+        {%- assign columns = 'col-sm-6' -%}
+    {% when "3" %}
+        {%- assign columns = 'col-sm-4' -%}
+    {% when "4" %}
+        {%- assign columns = 'col-sm-3' -%}
+    {% endcase %}
+
+<div class="container section-collection-list">
+    <div class="row">
+        {% if section.settings.title != blank %}
+            <div class="col-sm-12">
+                <h2>{{ section.settings.title | escape }}</h2>
+            </div>
+        {% endif %}
+        {% for block in section.blocks limit: section.blocks.size %}
+            <div {{ block.shopify_attributes }} class="{{ columns }}">
+                {%- assign collection = collections[block.settings.collection] -%}
+                <a href="{{ collection.url }}">
+                    {% if collection.image != blank %}
+                        {{ collection | img_url: '480x480' | img_tag: collection.title }}
+                    {% elsif collection.products.first != blank %}
+                            {{ collection.products.first | img_url: '480x480' | img_tag: collection.title }}
+                    {% elsif collection.empty? %}
+                        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                        {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder placeholder-svg placeholder-svg--small' }}
+                    {% endif %}
+                    {% if section.settings.show_title %}
+                        <p class="collection-title text-center" {{ block.shopify_attributes }}>
+                            {% if collection.empty? %}
+                                {{ 'homepage.onboarding.collection_title' | t }}
+                            {% else %}
+                                {{ collection.title }}
+                            {% endif %}
+                        </p>
+                    {% endif %}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% if section.blocks.size == 0 %}
+  {% include 'no-blocks' %}
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Collection list",
+    "max_blocks": 12,
+    "settings": [
+        {
+        "type": "checkbox",
+        "id": "show_title",
+        "label": "Show collection title",
+        "default": false
+        },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Collection list"
+      },
+      {
+        "type":      "select",
+        "id":        "columns",
+        "label":     "Columns per row",
+        "options": [
+          {
+          "group": "value",
+          "value": "2",
+          "label": "2"
+          },
+          {
+          "group": "value",
+          "value": "3",
+          "label": "3"
+          },
+          {
+          "group": "value",
+          "value": "4",
+          "label": "4"
+          }
+        ],
+        "default":   "3"
+        }
+    ],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "label": "Collection",
+            "id": "collection",
+            "type": "collection"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection list",
+        "category": "Collection",
+        "blocks": [
+          {
+            "type": "collection"
+          },
+          {
+            "type": "collection"
+          },
+          {
+            "type": "collection"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

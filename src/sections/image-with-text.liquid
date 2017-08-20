@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="row">
+        <div class="table-wrapper">
+            <div class="table-cell col-sm-6 no-float{% if section.settings.layout == 'right' %} col-sm-push-6 {% endif %}">
+                {% if feature_image_url %}
+                    <img src="{{ feature_image_url }}" alt="{{ section.settings.home-featured-title | escape }}"/>
+                {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-image' }}
+                {% endif %}
+            </div>
+            <div class="table-cell vertical-align-center col-sm-6 no-float{% if section.settings.layout == 'right' %} col-sm-pull-6{% endif %}">
+                {% unless section.settings.home-featured-title == blank %}
+                <h3>{{ section.settings.home-featured-title | escape }}</h3>
+                {% endunless %}
+                {% unless section.settings.home-featured-content == blank %}
+                {{ section.settings.home-featured-content }}
+                {% endunless %}
+                {% unless section.settings.home-featured-btn-label == blank %}
+                <a class="btn btn-primary"
+                   href="{{ section.settings.home-featured-btn-url }}">{{ section.settings.home-featured-btn-label | escape }}</a>
+                {% endunless %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Image with text",
+    "class": "shopify-section--image-with-text",
+    "settings": [
+        {
+            "type": "select",
+            "id": "layout",
+            "label": "Alignment",
+            "default": "left",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Image on left"
+                },
+                {
+                    "value": "right",
+                    "label": "Image on right"
+                }
+            ]
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "home-featured-title",
+            "label": "Heading",
+            "default": "Talk about your brand"
+        },
+        {
+            "type": "richtext",
+            "id": "home-featured-content",
+            "label": "Text",
+            "default": "<p>Use this text to share information about your brand with your customers. <b>Describe a product, share announcements, or welcome customers to your store.</b></p>"
+        },
+        {
+            "type": "text",
+            "id": "home-featured-btn-label",
+            "label": "Button label"
+        },
+        {
+            "type": "url",
+            "id": "home-featured-btn-url",
+            "label": "Button link"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Image with text",
+            "category": "Image"
+        }
+    ]
+}
+
+{% endschema %}
+
+
+
+{% stylesheet %}
+.image-with-text h3 {
+    font-weight: 200;
+}
+{% endstylesheet %}

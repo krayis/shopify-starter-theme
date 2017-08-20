@@ -1,0 +1,35 @@
+.section-carousel {
+  .slick-slider.carousel {
+    .carousel-arrow {
+      position: absolute;
+      display: inline-block;
+      line-height: normal;
+      vertical-align: top;
+      top: 50%;
+      height: 22px;
+      width: 13px;
+      margin-top: -11px;
+      z-index: 10000;
+      background-size: 132px 235px;
+      background-image: url({{ 'sprite.png' | asset_url }});
+      cursor: pointer;
+    }
+    .carousel-arrow--right {
+      background-position: 0 0;
+      right: -15px;
+      &:hover {
+        background-position: 0 -23px;
+      }
+    }
+    .carousel-arrow--left {
+      background-position: -14px 0;
+      left: -15px;
+      &:hover {
+        background-position: -14px -23px;
+      }
+    }
+  }
+  a {
+    display: block;
+  }
+}

@@ -1,0 +1,18 @@
+.alert-bar {
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  background: $color-alert-bar-background;
+  color: $color-alert-bar-text;
+  a {
+    color: $color-alert-bar-link;
+  }
+  display: block;
+  font-size: 1em;
+  font-weight: 400;
+  padding: 10px 22px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}

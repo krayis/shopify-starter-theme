@@ -1,0 +1,80 @@
+<div class="header-bar" data-section-id="{{ section.id }}">
+    <div class="container">
+        <div class="table-wrapper table-fluid">
+            <div class="table-cell vertical-align-center">
+                <div id="nav-search">
+                    <form action="/search" method="get" role="search" class="navbar-form nav-searchbar">
+                        <div class="nav-left">
+                            <div class="nav-search-scope nav-sprite">
+                                <div class="nav-search-facade" data-value="search-alias=aps">
+                                    <span class="nav-search-label" style="width: auto;">All</span>
+                                    <span class="nav-icon"></span>
+                                </div>
+                                <select class="nav-search-dropdown">
+                                    <option value="">All</option>
+                                    {% for product_type in shop.types %}
+                                        <option>{{ product_type }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="nav-right">
+                            <div class="nav-search-submit nav-sprite">
+                                <span id="nav-search-submit-text" class="nav-search-submit-text nav-sprite">{% include 'icon-search' %}</span>
+                                <input type="submit" class="nav-input" value="Go" tabindex="20">
+                            </div>
+                        </div>
+                        <div class="nav-fill">
+                            <div class="nav-search-field ">
+                                <input type="search"
+                                       name="q"
+                                       id="Search"
+                                       value="{{ search.terms | escape }}"
+                                       placeholder
+                                       autocomplete="off"
+                                       class="nav-input">
+                            </div>
+                            <div id="nav-iss-attach"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="table-cell vertical-align-center">
+                <div class="pull-right">
+                    {% if shop.customer_accounts_enabled %}
+                        <div class="header-bar__module">
+                            <ul class="header-bar__list">
+                                {% if customer %}
+                                    <li>
+                                        <a href="/account">{{ 'layout.customer.account' | t }}</a>
+                                    </li>
+                                    <li>
+                                        {{ 'layout.customer.log_out' | t | customer_logout_link }}
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        {{ 'layout.customer.log_in' | t | customer_login_link }}
+                                    </li>
+                                    <li> {{ 'layout.customer.or' | t  }}</li>
+                                    <li>
+                                        {{ 'layout.customer.create_account' | t | customer_register_link }}
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <div class="header-bar__module header-bar__module--cart">
+                        <a href="/cart">
+                            <span class="header-bar__cart-icon">{% include 'icon-cart' %}</span>
+                        </a>
+                    </div>
+                    <div class="header-bar__module">
+                        <a href="/cart">
+                            {{ 'layout.cart.title' | t }}{% unless cart.item_count == 0 %}:{% endunless %}
+                            {% unless cart.item_count == 0 %}<span class="count">{{ cart.item_count }}</span>{% endunless %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

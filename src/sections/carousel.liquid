@@ -1,0 +1,145 @@
+<div class="container section-carousel" {{ block.shopify_attributes }} data-section-id="{{ section.id }}"
+     data-section-type="carousel-section">
+    <div class="row">
+        {% if section.settings.title != blank %}
+            <div class="col-sm-12">
+                <h2>{{ section.settings.title | escape }}</h2>
+            </div>
+            <div class="clearfix"></div>
+        {% endif %}
+        <div class="carousel"  data-autoplay="{{ section.settings.autoplay }}" data-autoplay-speed="{{ section.settings.autoplay_speed }}"  data-enable-carousel="{{ section.settings.enable_carousel }}" data-slides="{{ section.settings.carousel_slide }}" data-scroll="{{ section.settings.carousel_scroll }}" id="section__carousel--{{ section.id }}">
+            {% for block in section.blocks limit: section.blocks.size %}
+                <div class="carousel-item">
+                    {% if block.settings.url != blank %}<a href="{{ block.settings.url }}">{% endif %}
+                        {% if block.settings.image != blank %}
+                            <img src="{{ block.settings.image | img_url }}" alt="{{ block.settings.image.alt | escape }}"/>
+                        {% else %}
+                            {% if block.settings.image == blank %}
+                                {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                                {% capture svg_tag_class %}placeholder placeholder-noblocks slide-link slide-link--{{ block.id }}{% endcapture %}
+                                {%- assign placeholder = 'placeholder-lifestyle-' | append: current -%}
+                                {{ 'product-' | append: current | placeholder_svg_tag: svg_tag_class }}
+                            {% endif %}
+                        {% endif %}
+                        {% if block.settings.url != blank %}</a>{% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Carousel",
+    "max_blocks": 12,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "header",
+        "content": "Carousel Options"
+      },
+      {
+        "type": "checkbox",
+        "id": "autoplay",
+        "label": "Auto-rotate slides"
+      },
+      {
+        "type": "select",
+        "id": "autoplay_speed",
+        "label": "Change slides every",
+        "options": [
+          {
+            "value": "3000",
+            "label": "3 seconds"
+          },
+          {
+            "value": "4000",
+            "label": "4 seconds"
+          },
+          {
+            "value": "5000",
+            "label": "5 seconds"
+          },
+          {
+            "value": "7000",
+            "label": "7 seconds"
+          },
+          {
+            "value": "10000",
+            "label": "10 seconds"
+          },
+          {
+            "value": "15000",
+            "label": "15 seconds"
+          }
+        ]
+      },
+      {
+        "type":   "range",
+        "id":     "carousel_slide",
+        "min":       2,
+        "max":       7,
+        "step":      1,
+        "label":     "Slides to show",
+        "default":   3
+      },
+      {
+        "type":   "range",
+        "id":     "carousel_scroll",
+        "min":       1,
+        "max":       7,
+        "step":      1,
+        "label":     "Slides to scroll",
+        "default":   1
+      }
+    ],
+    "blocks": [
+      {
+        "type": "logo_image",
+        "name": "Logo",
+        "settings": [
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Url"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Carousel",
+        "category": "Image",
+        "blocks": [
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

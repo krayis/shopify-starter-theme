@@ -1,0 +1,83 @@
+<div class="container" {{ block.shopify_attributes }} data-section-id="{{ section.id }}">
+    <div class="col-sm-12">
+        {% for block in section.blocks %}
+            <div class="col-sm-12" {{ block.shopify_attributes }}>
+                {% if block.type == 'page' and block.settings.show_heading %}
+                    <div class="section-header section-header--small">
+                        <h2 class="section-header__title">{{ pages[block.settings.home_page_content].title }}</h2>
+                    </div>
+                    {% elsif block.type == 'text' and block.settings.title != blank %}
+                    <div class="section-header section-header--small">
+                        <h2 class="section-header__title">{{ block.settings.title | escape }}</h2>
+                    </div>
+                {% endif %}
+                <div class="section-content">
+                    {% case block.type %}
+                        {% when 'page' %}
+                            {{ pages[block.settings.home_page_content].content }}
+                        {% when 'text' %}
+                            {{ block.settings.home_page_richtext }}
+                    {% else %}
+                    {% endcase %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% schema %}
+    {
+        "name": "Rich text",s
+        "blocks": [
+            {
+                "type": "page",
+                "name": "Page",
+                "settings": [
+                    {
+                        "type": "checkbox",
+                        "id": "show_heading",
+                        "label": "Show heading",
+                        "default": true
+                    },
+                    {
+                        "type": "page",
+                        "id": "home_page_content",
+                        "label": "Page content"
+                    }
+                ]
+            },
+            {
+                "type": "text",
+                "name": "Text",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Heading",
+                        "default": "Talk about your brand"
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "home_page_richtext",
+                        "label": "Text",
+                        "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Rich text",
+                "category": "Text",
+                "blocks": [
+                    {
+                        "type": "text",
+                        "settings": {
+                            "title": "Talk about your brand",
+                            "home_page_richtext": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

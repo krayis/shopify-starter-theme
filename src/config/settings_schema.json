@@ -1,0 +1,290 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Slate",
+    "theme_version": "1.0.0",
+    "theme_author": "Shopify",
+    "theme_documentation_url": "https://github.com/Shopify/slate",
+    "theme_support_email": "theme-support@shopify.com"
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "select",
+        "id": "type_base_size",
+        "label": "Base size",
+        "default": "16px",
+        "options": [
+          {
+            "value": "14px",
+            "label": "14px"
+          },
+          {
+            "value": "15px",
+            "label": "15px"
+          },
+          {
+            "value": "16px",
+            "label": "16px"
+          },
+          {
+            "value": "17px",
+            "label": "17px"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Alert Bar",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_alert_bar_text",
+        "label": "Text color",
+        "default": "#222"
+      },
+      {
+        "type": "color",
+        "id": "color_alert_bar_link",
+        "label": "Link color",
+        "default": "#222"
+      },
+      {
+        "type": "color",
+        "id": "color_alert_bar_background",
+        "label": "Background Color",
+        "default": "#f5f5f5"
+      }
+    ]
+  },
+  {
+    "name": "Section - Header Bar",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_header_bar_text",
+        "label": "Text color",
+        "default": "#888"
+      },
+      {
+        "type": "color",
+        "id": "color_header_bar_link",
+        "label": "Link color",
+        "default": "#d6d6d6"
+      },
+      {
+        "type": "color",
+        "id": "color_header_bar_background",
+        "label": "Background Color",
+        "default": "#222"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "General colors"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color",
+        "default": "#000",
+        "info": "Used for text links, and primary buttons"
+      },
+      {
+        "type": "color",
+        "id": "color_body_text",
+        "label": "Text color",
+        "default": "#757575",
+        "info": "Color used for content and paragraph text"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background color",
+        "default": "#fff",
+        "info": "Color used for background"
+      },
+      {
+        "type": "header",
+        "content": "Notification"
+      },
+      {
+        "type": "color",
+        "id": "color_topbar_notification_background",
+        "label": "Background color",
+        "default": "#e9eaea"
+      },
+      {
+        "type": "color",
+        "id": "color_topbar_notification_text",
+        "label": "Text color",
+        "default": "#333"
+      },
+      {
+        "type": "header",
+        "content": "Header navigation"
+      },
+      {
+        "type": "header",
+        "content": "Navigation colors"
+      },
+      {
+        "type": "color",
+        "id": "navbar_background",
+        "label": "Background color",
+        "default": "#777",
+        "info": "Color used navbar background"
+      },
+      {
+        "type": "color",
+        "id": "nav_link_color",
+        "label": "Link color",
+        "default": "#777",
+        "info": "Color used for navigation text links"
+      },
+      {
+        "type": "color",
+        "id": "nav_link_hover_color",
+        "label": "Link hover color",
+        "default": "#777",
+        "info": "Color used for navigation text links on hover"
+      },
+      {
+        "type": "color",
+        "id": "nav_link_bg_color",
+        "label": "Link hover background color",
+        "default": "#777",
+        "info": "Color used for navigation text links background on hover"
+      },
+      {
+        "type": "color",
+        "id": "nav_link_active_color",
+        "label": "Link active color",
+        "default": "#777",
+        "info": "Color used for navigation text links background on hover"
+      },
+      {
+        "type": "color",
+        "id": "nav_link_active_bg_color",
+        "label": "Link active background color",
+        "default": "#777",
+        "info": "Color used for navigation text links background on hover"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social sharing options"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_sharing_blog",
+        "label": "Enable sharing for blog articles",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_facebook",
+        "label": "Share on Facebook",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_twitter",
+        "label": "Tweet on Twitter",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_pinterest",
+        "label": "Pin on Pinterest",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Sharing links"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter link"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook link"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest link"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram link"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat_link",
+        "label": "Snapchat link"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "Tumblr link"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "Youtube link"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": "Vimeo link"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Enable cart notes",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
+    "name": "Mega Menu",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "main_nav",
+        "label": "Main navigation"
+      }
+    ]
+  }
+]

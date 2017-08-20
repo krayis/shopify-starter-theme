@@ -1,0 +1,30 @@
+<div class="row" {{ block.shopify_attributes }}>
+  {% if section.settings.title != blank %}
+  <h2>{{ section.settings.title | escape }}</h2>
+  {% endif %}
+
+  {% for block in section.blocks limit: section.blocks.size %}
+  <div class="col-sm-3">
+    <img src="{{ block.settings.brand_image | img_url }}" />
+  </div>
+  {% endfor %}
+
+</div>
+
+{% if section.blocks.size == 0 %}
+  {% include 'no-blocks' %}
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Instagram",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Brand list"
+      }
+    ]
+  }
+{% endschema %}

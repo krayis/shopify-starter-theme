@@ -1,0 +1,173 @@
+// Core variables and mixins
+@import url('settings/_variables.scss.liquid');
+@import url('bootstrap/_mixins.scss');
+
+// Reset and dependencies
+@import url('bootstrap/_normalize.scss');
+@import url('bootstrap/_print.scss');
+@import url('bootstrap/_glyphicons.scss');
+//
+//// Core CSS
+@import url('bootstrap/_scaffolding.scss');
+@import url('bootstrap/_type.scss');
+@import url('bootstrap/_code.scss');
+@import url('bootstrap/_grid.scss');
+@import url('bootstrap/_tables.scss');
+@import url('bootstrap/_forms.scss');
+@import url('bootstrap/_buttons.scss');
+
+// Components
+@import url('bootstrap/_component-animations.scss');
+@import url('bootstrap/_dropdowns.scss');
+@import url('bootstrap/_button-groups.scss');
+@import url('bootstrap/_input-groups.scss');
+@import url('bootstrap/_navs.scss');
+@import url('bootstrap/_navbar.scss');
+@import url('bootstrap/_breadcrumbs.scss');
+@import url('bootstrap/_pagination.scss');
+@import url('bootstrap/_pager.scss');
+@import url('bootstrap/_labels.scss');
+@import url('bootstrap/_badges.scss');
+@import url('bootstrap/_jumbotron.scss');
+@import url('bootstrap/_thumbnails.scss');
+@import url('bootstrap/_alerts.scss');
+@import url('bootstrap/_progress-bars.scss');
+@import url('bootstrap/_media.scss');
+@import url('bootstrap/_list-group.scss');
+@import url('bootstrap/_panels.scss');
+@import url('bootstrap/_responsive-embed.scss');
+@import url('bootstrap/_wells.scss');
+@import url('bootstrap/_close.scss');
+
+// Utility classes
+@import url('bootstrap/_utilities.scss');
+@import url('bootstrap/_responsive-utilities.scss');
+
+@import url('vendor/slick.scss');
+@import url('vendor/slick-theme.scss');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  &:active, &:hover {
+    text-decoration: none;
+  }
+}
+
+.icon {
+  &.icon-search {
+    width: 16px;
+    height: 16px;
+    path {
+      fill: #222;
+    }
+  }
+}
+svg {
+  &.placeholder-image {
+    background: #f5f5f5;
+    fill: #222;
+    border: 1px solid #ebebeb;
+  }
+  &.placeholder {
+    background: #f5f5f5;
+    fill: #222;
+    border: 1px solid #ebebeb;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+@import url('section/alert-bar.scss');
+@import url('section/header-bar.scss');
+@import url('section/header.scss');
+
+
+ul.social {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  li {
+    display: inline-block;
+    a {
+      svg {
+        height: 22px;
+        width: 22px;
+        path {
+          fill: red
+        }
+      }
+    }
+  }
+}
+
+.container-table {
+  display: table;
+}
+
+.container-table__cell {
+  display: table-cell;
+  vertical-align: middle;
+  float: none!important;
+}
+
+.placeholder-svg {
+  background: #ccc;
+  color: #000;
+  border: 1px solid #000;
+}
+
+
+.carousel-item {
+ padding: 0 15px;
+  svg {
+    display: block;
+    outline: 0;
+  }
+}
+
+svg {
+  outline: 0;
+  &:focus {
+    outline: 0;
+  }
+}
+
+
+.table-wrapper {
+  display: table;
+  .table-cell {
+    display: table-cell;
+    &.vertical-align-center {
+      vertical-align: middle;
+    }
+  }
+  &.table-fluid {
+    width: 100%;
+  }
+}
+.no-float {
+  float: none;
+}
+
+.shopify-section + .shopify-section {
+
+}
+
+.section-collection-list {
+  a {
+    display: block;
+    img {
+      margin-bottom: 5px;
+    }
+    .collection-title {
+      font-weight: 500;
+    }
+  }
+}
+
+
+@import url('section/carousel.scss');

@@ -1,0 +1,85 @@
+<style>
+    {% if section.settings.logo != blank %}
+    .site-header__logo-image {
+        max-width: {{ section.settings.logo_max_width }}px;
+    }
+    {% endif %}
+
+    {% if section.settings.align_logo == 'left' %}
+    .site-header__logo-image {
+        margin: 0;
+    }
+    {% endif %}
+</style>
+<header data-section-id="{{ section.id }}" data-section-type="header-section">
+    <div class="container">
+        <div class="navbar-identity">
+            {% if template.name == 'index' %}
+                <h1 itemscope itemtype="http://schema.org/Organization">
+                    <a href="/" itemprop="url" class="site-logo{% if section.settings.logo != blank %} site-header__logo-image{% endif %} {% if section.settings.logo == blank %} site-header__logo-text{% endif %}">
+                        {% if section.settings.logo != blank %}
+                            {% capture image_size %}x{{ section.settings.logo_max_height }}{% endcapture %}
+                            <img src="{{ section.settings.logo | img_url: image_size }}"
+                                 srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                                 alt="{{ section.settings.logo.alt | default: shop.name }}"
+                                 itemprop="logo">
+                        {% else %}
+                            {{ shop.name }}
+                        {% endif %}
+                    </a>
+                </h1>
+            {% endif %}
+        </div>
+        <nav role="navigation">
+            <ul class="site-nav">
+                {% for link in linklists[section.settings.main_linklist].links %}
+                    {%- assign child_list_handle = link.title | handleize -%}
+                    {% if menus[child_list_handle].links != blank %}
+                        <li class="site-nav--has-submenu{% if link.active %} site-nav--active{% endif %}">
+                            <a href="{{ link.url }}" class="site-nav__link">
+                                {{ link.title }}
+                                {% include 'icon-arrow-down' %}
+                            </a>
+                            <ul class="site-nav__submenu">
+                                {% for childlink in menus[child_list_handle].links %}
+                                    <li {% if childlink.active %}class="site-nav--active"{% endif %}>
+                                        <a href="{{ childlink.url }}" class="site-nav__link">{{ childlink.title | escape }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li {% if link.active %}class="site-nav--active"{% endif %}>
+                            <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+</header>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "text",
+        "id": "logo_max_height",
+        "label": "Custom logo height (in pixels)",
+        "default": "400"
+      },
+      {
+        "type": "link_list",
+        "id": "main_linklist",
+        "label": "Menu",
+        "default": "main-menu"
+      }
+    ]
+  }
+{% endschema %}
